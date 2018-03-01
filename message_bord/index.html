@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>react 实现留言板功能</title>
+		<script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+		<script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+		<script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+		<link rel="stylesheet" href="css/index.css" />
+	</head>
+	<body>
+		<div id="header" class="clearfix">
+			<!--<textarea name="" rows="" placeholder="说点什么吧......" cols=""></textarea>
+			<input type="button" value="提交" class="fr" id="btn" />-->
+		</div>
+		<div id="content">
+			<!--<div class="content_sub">
+				你好，我是一个小小的人哈哈哈 <div class="time"><span class="del">删除</span>2018-2-27 16:16:16</div>
+			</div>
+			<div class="content_sub">
+				你好<div class="time"><span class="del">删除</span>2018-2-27 16:16:16</div>
+			</div>-->
+		</div>
+		<div id="footer">
+			
+		</div>
+		
+		<script type="text/babel">
+			window.onload=function(){
+			
+				ReactDOM.render(
+					  <Header/>,
+					  document.getElementById('header')
+				);
+				ReactDOM.render(
+					  <Content/>,
+					  document.getElementById('content')
+				);
+				ReactDOM.render(
+					  <Footer/>,
+					  document.getElementById('footer')
+				);
+			}
+			var content_data=[
+				{
+					time:'2018-02-27 18:16:16',
+					content:'你好吗，我是留言1'
+				},
+				{
+					time:'2018-02-28 18:16:16',
+					content:'你好吗，我是留言2'
+				},
+				{
+					time:'2018-02-29 18:16:16',
+					content:'你好吗，我是留言3'
+				}
+			]
+			class Header extends React.Component{
+				constructor(...args){
+					super(...args)
+			
+				}
+				render(){
+					return <div>
+						<textarea  placeholder="说点什么吧......"></textarea>
+						<input type="button" value="提交" className="fr" id="btn" />
+					</div>
+				}
+			}
+			
+			class Content extends React.Component{
+				constructor(...args){
+					super(...args)
+				}
+				render(){
+					var arr=[];content_data.reverse();
+					content_data.map((v,i)=>{
+						arr.push(<div className="content_sub">
+							{v.content}<div className="time"><span className="del">删除</span>{v.time}</div>
+						</div>)
+					})
+					return <div>{arr}</div>
+				}
+			}
+			class Footer extends React.Component{
+				constructor(...args){
+					super(...args)
+				}
+				render(){
+					return <div>共{content_data.length}条信息</div>
+				}
+			}
+		</script>
+	</body>
+</html>
